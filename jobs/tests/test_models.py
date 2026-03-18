@@ -4,6 +4,7 @@ from jobs.models import Job
 
 @pytest.mark.django_db
 def test_job_creation():
+    """Prueba la creación manual de un trabajo y su método __str__"""
     # Setup
     user = User.objects.create_user(username='testclient', password='password123')
     job = Job.objects.create(
@@ -17,5 +18,14 @@ def test_job_creation():
     # Assert
     assert job.title == "Test Project"
     assert job.status == "OPEN"
-    assert str(job) == "Test Project"
+    # Verificamos que el __str__ coincida con la realidad del modelo
+    assert str(job) == "Test Project - testclient"
+
+@pytest.mark.django_db
+def test_job_with_fixture(sample_job):
+    """Prueba que la fixture 'sample_job' de conftest.py funciona correctamente"""
+    # Assert
+    assert sample_job.title == "Misión de Incógnito"
+    assert sample_job.client.username == "cyber_lancer"
+    assert sample_job.status == "OPEN"
 
