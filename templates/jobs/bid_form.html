@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-gray-800 p-8 rounded-lg border border-cyan-900 shadow-2xl">
+    <h1 class="text-2xl font-bold text-cyan-400 mb-6 italic">>> REDACTANDO_PROPUESTA</h1>
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        <div>
+            <label class="block text-gray-400 mb-2">Carta de Presentación</label>
+            {{ form.proposal_text }}
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-gray-400 mb-2">Presupuesto ($)</label>
+                {{ form.bid_amount }}
+            </div>
+            <div>
+                <label class="block text-gray-400 mb-2">Días Estimados</label>
+                {{ form.estimated_days }}
+            </div>
+        </div>
+        <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-500 py-3 rounded font-bold transition">ENVIAR AL CLIENTE</button>
+    </form>
+</div>
+
+<style>
+    input, textarea { width: 100%; padding: 10px; background: #1f2937; border: 1px solid #374151; color: white; border-radius: 4px; }
+    input:focus, textarea:focus { border-color: #06b6d4; outline: none; }
+</style>
+{% endblock %}
+

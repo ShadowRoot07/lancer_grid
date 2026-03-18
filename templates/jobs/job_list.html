@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6 italic">>> PROYECTOS_DISPONIBLES</h1>
+<div class="grid gap-4">
+    {% for job in jobs %}
+    <div class="bg-gray-800 p-6 border-l-4 border-cyan-500 rounded-r shadow-lg">
+        <h2 class="text-xl font-semibold text-cyan-300">{{ job.title }}</h2>
+        <p class="text-gray-400 mt-2">{{ job.description|truncatewords:20 }}</p>
+        <div class="mt-4 flex justify-between items-center text-sm">
+            <span class="text-gray-500">Presupuesto: ${{ job.min_budget }} - ${{ job.max_budget }}</span>
+            <a href="{% url 'job_detail' job.id %}" class="text-cyan-400 font-bold hover:underline">Ver detalles_</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay misiones disponibles en el radar...</p>
+    {% endfor %}
+</div>
+{% endblock %}
+

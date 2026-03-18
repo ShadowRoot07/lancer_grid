@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LancerGrid | Freelance Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <nav class="p-4 bg-gray-800 border-b border-gray-700 flex justify-between">
+        <a href="{% url 'job_list' %}" class="text-xl font-bold text-cyan-400">LANCER_GRID</a>
+        <div>
+            <a href="{% url 'job_create' %}" class="bg-cyan-600 px-4 py-2 rounded hover:bg-cyan-500">Publicar Misión</a>
+        </div>
+    </nav>
+    <main class="container mx-auto mt-8 p-4">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
+

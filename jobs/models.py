@@ -140,3 +140,18 @@ class Milestone(models.Model):
     def __str__(self):
         return f"{self.title} - {self.contract.job.title} (${self.amount})"
 
+
+class Message(models.Model):
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    content = models.TextField()
+    file_attachment = models.FileField(upload_to='chat_attachments/', null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['timestamp']
+
+    def __str__(self):
+        return f"De {self.sender.username} en {self.contract.job.title}"
+
